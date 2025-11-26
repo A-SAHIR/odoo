@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Main Menu: La Paie -->
+    <menuitem id="menu_la_paie_root"
+              name="La Paie"
+              sequence="95"
+              groups="hr.group_hr_user"
+              web_icon="la_paie_ma,static/description/icon.png"/>
+
+    <!-- Submenu: Payslips -->
+    <menuitem id="menu_paie_slip"
+              name="Payslips"
+              parent="menu_la_paie_root"
+              action="action_paie_slip"
+              sequence="10"/>
+
+    <!-- Submenu: Configuration -->
+    <menuitem id="menu_paie_configuration"
+              name="Configuration"
+              parent="menu_la_paie_root"
+              sequence="90"/>
+
+    <!-- Submenu: Configuration > Rules -->
+    <menuitem id="menu_paie_rule"
+              name="Rules"
+              parent="menu_paie_configuration"
+              action="action_paie_rule"
+              sequence="10"/>
+</odoo>

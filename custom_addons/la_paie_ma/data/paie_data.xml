@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Default Moroccan Salary Rules -->
+
+        <!-- BASE: Basic Salary -->
+        <record id="paie_rule_base" model="paie.rule">
+            <field name="name">Basic Salary</field>
+            <field name="code">BASE</field>
+            <field name="sequence">1</field>
+            <field name="category">basic</field>
+            <field name="python_code">result = contract.wage</field>
+        </record>
+
+        <!-- GROSS: Gross Salary (same as BASE for now) -->
+        <record id="paie_rule_gross" model="paie.rule">
+            <field name="name">Gross Salary</field>
+            <field name="code">GROSS</field>
+            <field name="sequence">10</field>
+            <field name="category">gross</field>
+            <field name="python_code">result = categories['BASIC']</field>
+        </record>
+
+        <!-- CNSS: Moroccan Social Security (4.48% of gross, ceiling 8000 MAD) -->
+        <record id="paie_rule_cnss" model="paie.rule">
+            <field name="name">CNSS (Social Security)</field>
+            <field name="code">CNSS</field>
+            <field name="sequence">20</field>
+            <field name="category">deduction</field>
+            <field name="python_code">result = min(categories['GROSS'], 8000) * 0.0448</field>
+        </record>
+
+        <!-- AMO: Mandatory Health Insurance (2.26% of gross) -->
+        <record id="paie_rule_amo" model="paie.rule">
+            <field name="name">AMO (Health Insurance)</field>
+            <field name="code">AMO</field>
+            <field name="sequence">30</field>
+            <field name="category">deduction</field>
+            <field name="python_code">result = categories['GROSS'] * 0.0226</field>
+        </record>
+
+        <!-- NET: Net Salary -->
+        <record id="paie_rule_net" model="paie.rule">
+            <field name="name">Net Salary</field>
+            <field name="code">NET</field>
+            <field name="sequence">100</field>
+            <field name="category">net</field>
+            <field name="python_code">result = categories['GROSS'] - categories['DEDUCTION']</field>
+        </record>
+    </data>
+</odoo>

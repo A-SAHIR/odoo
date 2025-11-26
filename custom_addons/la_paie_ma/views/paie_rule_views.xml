@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Salary Rule Tree View -->
+    <record id="paie_rule_view_tree" model="ir.ui.view">
+        <field name="name">paie.rule.tree</field>
+        <field name="model">paie.rule</field>
+        <field name="arch" type="xml">
+            <list string="Salary Rules" default_order="sequence, id">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="category"/>
+                <field name="active" column_invisible="True"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Salary Rule Form View -->
+    <record id="paie_rule_view_form" model="ir.ui.view">
+        <field name="name">paie.rule.form</field>
+        <field name="model">paie.rule</field>
+        <field name="arch" type="xml">
+            <form string="Salary Rule">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Rule Name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="code"/>
+                            <field name="sequence"/>
+                        </group>
+                        <group>
+                            <field name="category"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Python Code" name="python_code">
+                            <field name="python_code" widget="code" options="{'mode': 'python'}"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Salary Rule Search View -->
+    <record id="paie_rule_view_search" model="ir.ui.view">
+        <field name="name">paie.rule.search</field>
+        <field name="model">paie.rule</field>
+        <field name="arch" type="xml">
+            <search string="Search Salary Rules">
+                <field name="name"/>
+                <field name="code"/>
+                <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Category" name="group_by_category" domain="[]" context="{'group_by': 'category'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- Salary Rule Action -->
+    <record id="action_paie_rule" model="ir.actions.act_window">
+        <field name="name">Salary Rules</field>
+        <field name="res_model">paie.rule</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="paie_rule_view_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first salary rule
+            </p>
+            <p>
+                Salary rules define how payslip amounts are computed.
+            </p>
+        </field>
+    </record>
+</odoo>
