@@ -21,7 +21,7 @@
             <field name="python_code">result = categories['BASIC']</field>
         </record>
 
-        <!-- CNSS: Moroccan Social Security (4.48% of gross, ceiling 8000 MAD for 2025) -->
+        <!-- CNSS: Moroccan Social Security (4.48% of gross, ceiling 8000 MAD) -->
         <record id="paie_rule_cnss" model="paie.rule">
             <field name="name">CNSS (Social Security)</field>
             <field name="code">CNSS</field>
