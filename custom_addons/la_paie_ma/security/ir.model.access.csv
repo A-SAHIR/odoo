@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_paie_rule_user,paie.rule.user,model_paie_rule,hr.group_hr_user,1,1,1,1
+access_paie_slip_user,paie.slip.user,model_paie_slip,hr.group_hr_user,1,1,1,1
+access_paie_slip_line_user,paie.slip.line.user,model_paie_slip_line,hr.group_hr_user,1,1,1,1
